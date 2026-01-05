@@ -1,0 +1,130 @@
+body {
+    background: #f5f5f5;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    transition: background 1s;
+}
+
+.container {
+    text-align: center;
+    max-width: 460px;
+    padding: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.snoopy {
+    width: 160px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 26px;
+    border: none;
+    background: #000;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+/* NOMBRE */
+#name span {
+    font-size: 46px;
+    opacity: 0.3;
+    transition: color 0.4s, opacity 0.4s;
+}
+
+#name span.active {
+    color: #ff4081;
+    opacity: 1;
+}
+
+/* FLORES */
+.garden {
+    margin-top: 30px;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.flower {
+    width: 18px;
+    height: 0;
+    background: #2e7d32;
+    position: relative;
+    animation: growStem 2s forwards;
+    animation-play-state: paused;
+}
+
+@keyframes growStem {
+    to { height: 130px; }
+}
+
+/* GERBERA */
+.gerbera::after {
+    content: "";
+    position: absolute;
+    top: -38px;
+    left: -26px;
+    width: 70px;
+    height: 70px;
+    background: radial-gradient(circle, #ffeb3b 30%, #ff9800 31%);
+    border-radius: 50%;
+    opacity: 0;
+    animation: bloom 1s forwards;
+    animation-delay: 2s;
+}
+
+/* LIRIO */
+.lily::after {
+    content: "";
+    position: absolute;
+    top: -48px;
+    left: -20px;
+    width: 52px;
+    height: 78px;
+    background: #bbdefb;
+    border-radius: 50%;
+    opacity: 0;
+    animation: bloom 1s forwards;
+    animation-delay: 2s;
+}
+
+@keyframes bloom {
+    to { opacity: 1; }
+}
+
+/* FONDO ESTRELLADO */
+body.stars {
+    background: #000;
+    overflow: hidden;
+}
+
+body.stars::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle, rgba(0,140,255,0.9) 1px, transparent 1px),
+        radial-gradient(circle, rgba(0,0,0,1) 1px, transparent 1px);
+    background-size: 42px 42px, 26px 26px;
+    animation: starsMove 25s linear infinite;
+    z-index: -1;
+}
+
+@keyframes starsMove {
+    from { background-position: 0 0, 0 0; }
+    to { background-position: 600px 900px, -400px 700px; }
+}
