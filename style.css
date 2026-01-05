@@ -1,14 +1,8 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
-}
-
 body {
-  background: black;
+  background: #05070c;
   color: white;
   overflow: hidden;
+  font-family: "Segoe UI", sans-serif;
 }
 
 /* SECCIONES */
@@ -21,69 +15,66 @@ body {
   flex-direction: column;
 }
 
-.section.active {
-  display: flex;
+.section.active { display: flex; }
+
+.section.dark {
+  background: radial-gradient(circle, #02030a 0%, #000 80%);
 }
 
-/* INICIO */
-.snoopy {
-  width: 200px;
-  margin-bottom: 20px;
+/* TEXTO INICIAL */
+.intro-text {
+  margin-bottom: 15px;
+  opacity: 0;
+  animation: fadeIn 2s forwards;
 }
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* SNOOPY */
+.snoopy { width: 200px; margin-bottom: 20px; }
 
 button {
   padding: 12px 25px;
-  font-size: 16px;
+  border-radius: 25px;
   border: none;
-  border-radius: 20px;
   background: #ffe95a;
   cursor: pointer;
 }
 
-/* MENSAJE */
-#mensaje p {
-  max-width: 600px;
-  text-align: center;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
 /* NOMBRE */
 #nombre span {
-  font-size: 48px;
+  font-size: 50px;
   opacity: 0;
   animation: glow 0.6s forwards;
-}
-
-#nombre span:nth-child(n) {
-  animation-delay: calc(var(--i) * 0.4s);
 }
 
 @keyframes glow {
   to {
     opacity: 1;
     color: #ffe95a;
-    text-shadow: 0 0 15px #ffe95a;
+    text-shadow: 0 0 18px #ffe95a;
   }
 }
 
 /* JARDIN */
 .garden {
   display: flex;
-  gap: 40px;
+  gap: 35px;
   margin-top: 30px;
 }
 
-/* FLOR */
+/* FLOR BASE */
 .flower {
   position: relative;
-  width: 100px;
-  height: 260px;
+  width: 110px;
+  height: 300px;
   animation: sway 4s ease-in-out infinite;
 }
 
 @keyframes sway {
-  50% { transform: rotate(2deg); }
+  50% { transform: rotate(1.5deg); }
 }
 
 /* TALLO */
@@ -92,29 +83,29 @@ button {
   position: absolute;
   bottom: 0;
   left: 50%;
-  width: 6px;
+  width: 7px;
   height: 0;
-  background: linear-gradient(#00ffd5, #009977);
+  background: #38e6c3;
   animation: growStem 2s forwards;
 }
 
 @keyframes growStem {
-  to { height: 160px; }
+  to { height: 180px; }
 }
 
-/* HOJAS */
+/* HOJA */
 .flower::after {
   content: "";
   position: absolute;
-  bottom: 90px;
-  left: 20px;
-  width: 30px;
-  height: 18px;
-  background: #3cff7f;
+  bottom: 120px;
+  left: 15px;
+  width: 35px;
+  height: 20px;
+  background: #4cff91;
   border-radius: 50%;
-  opacity: 0;
   animation: leafIn 1s forwards;
-  animation-delay: 2s;
+  opacity: 0;
+  animation-delay: 1.8s;
 }
 
 @keyframes leafIn {
@@ -122,63 +113,64 @@ button {
 }
 
 /* FLOR */
-.flower .bloom {
+.bloom {
   position: absolute;
-  top: 30px;
+  top: 25px;
   left: 50%;
   transform: translateX(-50%);
-  opacity: 0;
-  animation: bloomIn 1.5s forwards;
-  animation-delay: 3s;
 }
 
-@keyframes bloomIn {
-  to { opacity: 1; }
-}
-
-/* PETALOS */
-.petal {
-  width: 30px;
-  height: 18px;
-  background: #ffe95a;
+/* CENTRO */
+.core {
+  width: 22px;
+  height: 22px;
+  background: #fff4a3;
   border-radius: 50%;
+  box-shadow: 0 0 20px #ffe680;
+  margin: auto;
+}
+
+/* PETALOS GRANDES */
+.petal {
   position: absolute;
-  box-shadow: 0 0 12px rgba(255,240,120,0.8);
+  width: 45px;
+  height: 26px;
+  border-radius: 50%;
+}
+
+/* GERBERA */
+.gerbera .petal {
+  background: #ffe95a;
+  box-shadow: 0 0 18px rgba(255,230,120,0.9);
 }
 
 /* LIRIO */
 .lirio .petal {
   background: white;
-  box-shadow: 0 0 12px #cceeff;
+  box-shadow: 0 0 20px #cce9ff;
 }
 
 /* ESTRELLAS */
-#stars {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-}
+#stars { position: fixed; inset: 0; z-index: -1; }
 
 .star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
-  background: rgba(0,200,255,0.8);
-  animation: move 20s linear infinite, twinkle 2s infinite;
+  position: absolute;
+  animation: move 18s linear infinite, twinkle 3s infinite;
 }
 
-.star.yellow {
-  background: rgba(255,220,120,0.9);
-}
+.star.blue { background: #3fdcff; }
+.star.yellow { background: #ffe95a; }
 
 @keyframes move {
-  from { transform: translateY(100vh); }
-  to { transform: translateY(-120vh); }
+  from { transform: translateY(120vh); }
+  to { transform: translateY(-140vh); }
 }
 
 @keyframes twinkle {
-  50% { opacity: 0.2; }
+  50% { opacity: 0.3; }
 }
 
 /* FOOTER */
@@ -189,4 +181,3 @@ footer {
   font-size: 12px;
   opacity: 0.6;
 }
-
