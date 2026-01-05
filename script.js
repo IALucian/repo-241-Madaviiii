@@ -1,54 +1,39 @@
-const inicio = document.getElementById("inicio");
-const mensaje = document.getElementById("mensaje");
-const final = document.getElementById("final");
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
 
-document.getElementById("btnInicio").onclick = () => {
-  inicio.classList.remove("active");
-  mensaje.classList.add("active");
-};
+canvas.width = innerWidth;
+canvas.height = innerHeight;
 
-document.getElementById("btnFinal").onclick = () => {
-  mensaje.classList.remove("active");
-  final.classList.add("active");
-  animateName();
-  createFlowers();
-};
+let stars = [];
 
-function animateName() {
-  document.querySelectorAll("#nombre span").forEach((s, i) => {
-    s.style.animationDelay = `${i * 0.4}s`;
+for (let i = 0; i < 120; i++) {
+  stars.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    size: Math.random() * 2.5 + 1.5,
+    speed: Math.random() * 0.4 + 0.1
   });
 }
 
-function createFlowers() {
-  document.querySelectorAll(".flower").forEach(flower => {
-    const bloom = document.createElement("div");
-    bloom.className = "bloom";
+function animateStars() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "rgba(255,255,255,0.8)";
 
-    const core = document.createElement("div");
-    core.className = "core";
-    bloom.appendChild(core);
+  stars.forEach(s => {
+    s.y += s.speed;
+    if (s.y > canvas.height) s.y = 0;
 
-    for (let i = 0; i < 8; i++) {
-      const p = document.createElement("div");
-      p.className = "petal";
-      p.style.transform =
-        `rotate(${i * 45}deg) translateY(-30px)`;
-      bloom.appendChild(p);
-    }
-
-    flower.appendChild(bloom);
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+    ctx.fill();
   });
+
+  requestAnimationFrame(animateStars);
 }
 
-/* ESTRELLAS */
-const stars = document.getElementById("stars");
+animateStars();
 
-for (let i = 0; i < 150; i++) {
-  const s = document.createElement("div");
-  s.classList.add("star");
-  s.classList.add(Math.random() > 0.5 ? "blue" : "yellow");
-  s.style.left = Math.random() * 100 + "vw";
-  s.style.animationDuration = 12 + Math.random() * 20 + "s";
-  stars.appendChild(s);
-}
+/* OSCURECER ETAPA 3 (EJEMPLO) */
+setTimeout(() => {
+  document.getElementById("scene").classList.add("stage-3");
+}, 6000);
