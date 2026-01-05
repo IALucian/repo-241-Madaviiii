@@ -1,45 +1,50 @@
-// ==============================
-// REFERENCIAS A ELEMENTOS
-// ==============================
-const fase1 = document.getElementById("fase1");
-const fase2 = document.getElementById("fase2");
-const fase3 = document.getElementById("fase3");
+const inicio = document.getElementById("inicio");
+const mensaje = document.getElementById("mensaje");
+const final = document.getElementById("final");
 
-const btnIniciar = document.getElementById("btnIniciar");
-const btnFinalizar = document.getElementById("btnFinalizar");
+document.getElementById("btnInicio").onclick = () => {
+  inicio.classList.remove("active");
+  mensaje.classList.add("active");
+};
 
-const musica = document.getElementById("musica");
-const letrasNombre = document.querySelectorAll("#nombre span");
+document.getElementById("btnFinal").onclick = () => {
+  mensaje.classList.remove("active");
+  final.classList.add("active");
+  animateName();
+  createFlowers();
+};
 
-// ==============================
-// EVENTOS
-// ==============================
-
-// FASE 1 → FASE 2
-btnIniciar.addEventListener("click", () => {
-  fase1.classList.remove("activa");
-  fase2.classList.add("activa");
-
-  // Música (NO se toca, tal como pediste)
-  musica.play();
-});
-
-// FASE 2 → FASE 3
-btnFinalizar.addEventListener("click", () => {
-  fase2.classList.remove("activa");
-  fase3.classList.add("activa");
-
-  animarNombre();
-});
-
-// ==============================
-// FUNCIONES
-// ==============================
-
-// Animación del nombre letra por letra
-function animarNombre() {
-  letrasNombre.forEach((letra, index) => {
-    letra.style.animationDelay = `${index * 0.5}s`;
+// NOMBRE ANIMADO
+function animateName() {
+  document.querySelectorAll("#nombre span").forEach((s, i) => {
+    s.style.setProperty("--i", i);
   });
 }
 
+// FLORES
+function createFlowers() {
+  document.querySelectorAll(".flower").forEach(flower => {
+    const bloom = document.createElement("div");
+    bloom.className = "bloom";
+
+    for (let i = 0; i < 5; i++) {
+      const p = document.createElement("div");
+      p.className = "petal";
+      p.style.transform = `rotate(${i * 72}deg) translateY(-20px)`;
+      bloom.appendChild(p);
+    }
+
+    flower.appendChild(bloom);
+  });
+}
+
+// ESTRELLAS
+const stars = document.getElementById("stars");
+for (let i = 0; i < 120; i++) {
+  const s = document.createElement("div");
+  s.className = "star";
+  if (Math.random() > 0.6) s.classList.add("yellow");
+  s.style.left = Math.random() * 100 + "vw";
+  s.style.animationDuration = 10 + Math.random() * 20 + "s";
+  stars.appendChild(s);
+}
