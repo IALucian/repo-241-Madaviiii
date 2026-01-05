@@ -1,4 +1,3 @@
-/* ================= RESET ================= */
 * {
   margin: 0;
   padding: 0;
@@ -7,182 +6,186 @@
 }
 
 body {
+  background: black;
+  color: white;
   overflow: hidden;
-  background: #f2f2f2;
-  color: #222;
 }
 
-/* ================= FASES ================= */
-.fase {
+/* SECCIONES */
+.section {
+  position: absolute;
+  inset: 0;
   display: none;
-  width: 100vw;
-  height: 100vh;
-}
-
-.fase.activa {
-  display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
-/* ================= FASE 1 ================= */
-.intro {
-  text-align: center;
-  animation: fadeIn 2s ease;
+.section.active {
+  display: flex;
 }
 
+/* INICIO */
 .snoopy {
-  width: 220px;
-  animation: float 4s ease-in-out infinite;
+  width: 200px;
+  margin-bottom: 20px;
 }
 
-.texto-intro {
-  margin: 20px 0;
-}
-
-#btnIniciar {
-  padding: 15px 40px;
-  font-size: 1.2em;
-  border-radius: 30px;
+button {
+  padding: 12px 25px;
+  font-size: 16px;
   border: none;
-  background: #1e90ff;
-  color: white;
+  border-radius: 20px;
+  background: #ffe95a;
   cursor: pointer;
-  animation: pulse 2s infinite;
 }
 
-/* ================= FASE 2 ================= */
-.mensaje {
+/* MENSAJE */
+#mensaje p {
   max-width: 600px;
   text-align: center;
-  animation: slideUp 1.5s ease;
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
-#btnFinalizar {
-  margin-top: 30px;
-  padding: 12px 35px;
-  font-size: 1.1em;
-  border-radius: 25px;
-  border: none;
-  background: #1e90ff;
-  color: white;
-  cursor: pointer;
-}
-
-/* ================= FASE 3 ================= */
-#fase3 {
-  flex-direction: column;
-  background: black;
-  background-image:
-    radial-gradient(white 1px, transparent 1px),
-    radial-gradient(#1e90ff 1px, transparent 1px);
-  background-size: 50px 50px;
-}
-
-#nombre {
-  color: white;
-  font-size: 3em;
-  margin-bottom: 30px;
-}
-
+/* NOMBRE */
 #nombre span {
+  font-size: 48px;
   opacity: 0;
-  animation: glow 0.8s forwards;
+  animation: glow 0.6s forwards;
 }
 
-#flores {
+#nombre span:nth-child(n) {
+  animation-delay: calc(var(--i) * 0.4s);
+}
+
+@keyframes glow {
+  to {
+    opacity: 1;
+    color: #ffe95a;
+    text-shadow: 0 0 15px #ffe95a;
+  }
+}
+
+/* JARDIN */
+.garden {
   display: flex;
-  gap: 30px;
+  gap: 40px;
+  margin-top: 30px;
 }
 
-/* ================= FLORES ================= */
-.flor {
+/* FLOR */
+.flower {
   position: relative;
   width: 100px;
   height: 260px;
+  animation: sway 4s ease-in-out infinite;
 }
 
-.flor::before {
+@keyframes sway {
+  50% { transform: rotate(2deg); }
+}
+
+/* TALLO */
+.flower::before {
   content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
   width: 6px;
   height: 0;
-  background: green;
-  transform: translateX(-50%);
-  animation: tallo 2s forwards;
+  background: linear-gradient(#00ffd5, #009977);
+  animation: growStem 2s forwards;
 }
 
-.flor::after {
+@keyframes growStem {
+  to { height: 160px; }
+}
+
+/* HOJAS */
+.flower::after {
   content: "";
   position: absolute;
-  top: 20px;
-  left: 50%;
-  width: 0;
-  height: 0;
+  bottom: 90px;
+  left: 20px;
+  width: 30px;
+  height: 18px;
+  background: #3cff7f;
   border-radius: 50%;
-  transform: translateX(-50%);
-  animation: petalos 2s forwards 2s;
+  opacity: 0;
+  animation: leafIn 1s forwards;
+  animation-delay: 2s;
 }
 
-.gerbera::after {
-  background: pink;
-}
-
-.lirio::after {
-  background: white;
-}
-
-/* ================= FIRMA ================= */
-#firma {
-  position: fixed;
-  bottom: 15px;
-  left: 15px;
-  font-size: 0.75em;
-  line-height: 1.4;
-  z-index: 10;
-  color: rgba(0, 0, 0, 0.5);
-}
-
-/* En fase 3 (fondo oscuro) */
-#fase3 ~ #firma {
-  color: rgba(255, 255, 255, 0.6);
-}
-
-/* ================= ANIMACIONES ================= */
-@keyframes fadeIn {
-  from { opacity: 0; }
+@keyframes leafIn {
   to { opacity: 1; }
 }
 
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+/* FLOR */
+.flower .bloom {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: bloomIn 1.5s forwards;
+  animation-delay: 3s;
 }
 
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 rgba(30,144,255,0.6); }
-  50% { box-shadow: 0 0 20px rgba(30,144,255,0.9); }
-  100% { box-shadow: 0 0 0 rgba(30,144,255,0.6); }
+@keyframes bloomIn {
+  to { opacity: 1; }
 }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+/* PETALOS */
+.petal {
+  width: 30px;
+  height: 18px;
+  background: #ffe95a;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 0 0 12px rgba(255,240,120,0.8);
 }
 
-@keyframes glow {
-  to {
-    opacity: 1;
-    text-shadow: 0 0 15px #1e90ff;
-  }
+/* LIRIO */
+.lirio .petal {
+  background: white;
+  box-shadow: 0 0 12px #cceeff;
 }
 
-@keyframes tallo {
-  to { height: 180px; }
+/* ESTRELLAS */
+#stars {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
 }
 
-@keyframes petalos {
-  to { width: 80px; height: 80px; }
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(0,200,255,0.8);
+  animation: move 20s linear infinite, twinkle 2s infinite;
+}
+
+.star.yellow {
+  background: rgba(255,220,120,0.9);
+}
+
+@keyframes move {
+  from { transform: translateY(100vh); }
+  to { transform: translateY(-120vh); }
+}
+
+@keyframes twinkle {
+  50% { opacity: 0.2; }
+}
+
+/* FOOTER */
+footer {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  font-size: 12px;
+  opacity: 0.6;
 }
