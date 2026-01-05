@@ -1,183 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
 body {
-  background: #05070c;
+  background: radial-gradient(circle at center, #0b0b15, #000);
   color: white;
   overflow: hidden;
-  font-family: "Segoe UI", sans-serif;
-}
-
-/* SECCIONES */
-.section {
-  position: absolute;
-  inset: 0;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.section.active { display: flex; }
-
-.section.dark {
-  background: radial-gradient(circle, #02030a 0%, #000 80%);
+  height: 100vh;
 }
 
 /* TEXTO INICIAL */
 .intro-text {
-  margin-bottom: 15px;
-  opacity: 0;
-  animation: fadeIn 2s forwards;
+  position: absolute;
+  top: 20px;
+  width: 100%;
+  text-align: center;
+  font-size: 1.1rem;
+  opacity: 0.9;
+  z-index: 10;
 }
 
-@keyframes fadeIn {
-  to { opacity: 1; }
+/* TITULO */
+.title {
+  text-align: center;
+  color: gold;
+  margin-bottom: 40px;
+  text-shadow: 0 0 15px gold;
 }
 
-/* SNOOPY */
-.snoopy { width: 200px; margin-bottom: 20px; }
-
-button {
-  padding: 12px 25px;
-  border-radius: 25px;
-  border: none;
-  background: #ffe95a;
-  cursor: pointer;
-}
-
-/* NOMBRE */
-#nombre span {
-  font-size: 50px;
-  opacity: 0;
-  animation: glow 0.6s forwards;
-}
-
-@keyframes glow {
-  to {
-    opacity: 1;
-    color: #ffe95a;
-    text-shadow: 0 0 18px #ffe95a;
-  }
-}
-
-/* JARDIN */
-.garden {
-  display: flex;
-  gap: 35px;
-  margin-top: 30px;
-}
-
-/* FLOR BASE */
-.flower {
+/* ESCENA */
+.scene {
   position: relative;
-  width: 110px;
-  height: 300px;
-  animation: sway 4s ease-in-out infinite;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: filter 2s ease;
 }
 
-@keyframes sway {
-  50% { transform: rotate(1.5deg); }
+/* ETAPA OSCURA */
+.scene.stage-3 {
+  filter: brightness(0.45);
+}
+
+/* FLORES */
+.flowers {
+  display: flex;
+  gap: 40px;
 }
 
 /* TALLO */
+.flower {
+  position: relative;
+  width: 20px;
+  height: 160px;
+  background: #4ef0c4;
+  border-radius: 10px;
+}
+
 .flower::before {
   content: "";
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 7px;
-  height: 0;
-  background: #38e6c3;
-  animation: growStem 2s forwards;
-}
-
-@keyframes growStem {
-  to { height: 180px; }
-}
-
-/* HOJA */
-.flower::after {
-  content: "";
-  position: absolute;
-  bottom: 120px;
-  left: 15px;
-  width: 35px;
-  height: 20px;
-  background: #4cff91;
-  border-radius: 50%;
-  animation: leafIn 1s forwards;
-  opacity: 0;
-  animation-delay: 1.8s;
-}
-
-@keyframes leafIn {
-  to { opacity: 1; }
-}
-
-/* FLOR */
-.bloom {
-  position: absolute;
-  top: 25px;
+  top: -70px;
   left: 50%;
   transform: translateX(-50%);
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background:
+    repeating-conic-gradient(
+      from 0deg,
+      var(--petal) 0deg 20deg,
+      transparent 20deg 40deg
+    );
+  filter: drop-shadow(0 0 12px var(--petal));
 }
 
 /* CENTRO */
-.core {
-  width: 22px;
-  height: 22px;
-  background: #fff4a3;
-  border-radius: 50%;
-  box-shadow: 0 0 20px #ffe680;
-  margin: auto;
-}
-
-/* PETALOS GRANDES */
-.petal {
+.flower::after {
+  content: "";
   position: absolute;
-  width: 45px;
-  height: 26px;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 25px;
+  height: 25px;
+  background: gold;
   border-radius: 50%;
+  box-shadow: 0 0 15px gold;
 }
 
-/* GERBERA */
-.gerbera .petal {
-  background: #ffe95a;
-  box-shadow: 0 0 18px rgba(255,230,120,0.9);
+/* COLORES */
+.flower.red {
+  --petal: crimson;
 }
 
-/* LIRIO */
-.lirio .petal {
-  background: white;
-  box-shadow: 0 0 20px #cce9ff;
-}
-
-/* ESTRELLAS */
-#stars { position: fixed; inset: 0; z-index: -1; }
-
-.star {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  position: absolute;
-  animation: move 18s linear infinite, twinkle 3s infinite;
-}
-
-.star.blue { background: #3fdcff; }
-.star.yellow { background: #ffe95a; }
-
-@keyframes move {
-  from { transform: translateY(120vh); }
-  to { transform: translateY(-140vh); }
-}
-
-@keyframes twinkle {
-  50% { opacity: 0.3; }
+.flower.white {
+  --petal: #f5f5f5;
 }
 
 /* FOOTER */
 footer {
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-  font-size: 12px;
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  font-size: 0.7rem;
   opacity: 0.6;
+}
+
+/* CANVAS */
+#stars {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
 }
