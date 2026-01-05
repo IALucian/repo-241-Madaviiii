@@ -1,48 +1,45 @@
-const intro = document.getElementById("intro");
-const message = document.getElementById("message");
-const finalSection = document.getElementById("final");
+// ==============================
+// REFERENCIAS A ELEMENTOS
+// ==============================
+const fase1 = document.getElementById("fase1");
+const fase2 = document.getElementById("fase2");
+const fase3 = document.getElementById("fase3");
 
-const startBtn = document.getElementById("startBtn");
-const finalBtn = document.getElementById("finalBtn");
-const bloomBtn = document.getElementById("bloomBtn");
+const btnIniciar = document.getElementById("btnIniciar");
+const btnFinalizar = document.getElementById("btnFinalizar");
 
-const letters = document.querySelectorAll("#name span");
-const flowers = document.querySelectorAll(".flower");
-const music = document.getElementById("bgMusic");
+const musica = document.getElementById("musica");
+const letrasNombre = document.querySelectorAll("#nombre span");
 
-// Paso 1: Intro → Mensaje
-startBtn.addEventListener("click", () => {
-    intro.classList.add("hidden");
-    message.classList.remove("hidden");
+// ==============================
+// EVENTOS
+// ==============================
+
+// FASE 1 → FASE 2
+btnIniciar.addEventListener("click", () => {
+  fase1.classList.remove("activa");
+  fase2.classList.add("activa");
+
+  // Música (NO se toca, tal como pediste)
+  musica.play();
 });
 
-// Paso 2: Mensaje → Final
-finalBtn.addEventListener("click", () => {
-    message.classList.add("hidden");
-    finalSection.classList.remove("hidden");
+// FASE 2 → FASE 3
+btnFinalizar.addEventListener("click", () => {
+  fase2.classList.remove("activa");
+  fase3.classList.add("activa");
+
+  animarNombre();
 });
 
-// Paso 3: Animación final
-bloomBtn.addEventListener("click", () => {
+// ==============================
+// FUNCIONES
+// ==============================
 
-    // Fondo estrellas
-    document.body.classList.add("stars");
+// Animación del nombre letra por letra
+function animarNombre() {
+  letrasNombre.forEach((letra, index) => {
+    letra.style.animationDelay = `${index * 0.5}s`;
+  });
+}
 
-    // Música
-    music.volume = 0.6;
-    music.play();
-
-    // Iluminar nombre
-    letters.forEach((letter, i) => {
-        setTimeout(() => {
-            letter.classList.add("active");
-        }, i * 300);
-    });
-
-    // Flores
-    setTimeout(() => {
-        flowers.forEach(flower => {
-            flower.style.animationPlayState = "running";
-        });
-    }, letters.length * 300 + 600);
-});
