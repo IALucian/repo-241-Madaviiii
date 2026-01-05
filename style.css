@@ -1,130 +1,188 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
 body {
-    background: #f5f5f5;
-    font-family: 'Segoe UI', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    transition: background 1s;
+  overflow: hidden;
+  background: #f2f2f2;
+  color: #222;
 }
 
-.container {
-    text-align: center;
-    max-width: 460px;
-    padding: 20px;
+/* ================= FASES ================= */
+.fase {
+  display: none;
+  width: 100vw;
+  height: 100vh;
 }
 
-.hidden {
-    display: none;
+.fase.activa {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ================= FASE 1 ================= */
+.intro {
+  text-align: center;
+  animation: fadeIn 2s ease;
 }
 
 .snoopy {
-    width: 160px;
-    margin-bottom: 20px;
+  width: 220px;
+  animation: float 4s ease-in-out infinite;
 }
 
-button {
-    padding: 10px 26px;
-    border: none;
-    background: #000;
-    color: #fff;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
+.texto-intro {
+  margin: 20px 0;
 }
 
-button:hover {
-    opacity: 0.85;
+#btnIniciar {
+  padding: 15px 40px;
+  font-size: 1.2em;
+  border-radius: 30px;
+  border: none;
+  background: #1e90ff;
+  color: white;
+  cursor: pointer;
+  animation: pulse 2s infinite;
 }
 
-/* NOMBRE */
-#name span {
-    font-size: 46px;
-    opacity: 0.3;
-    transition: color 0.4s, opacity 0.4s;
+/* ================= FASE 2 ================= */
+.mensaje {
+  max-width: 600px;
+  text-align: center;
+  animation: slideUp 1.5s ease;
 }
 
-#name span.active {
-    color: #ff4081;
-    opacity: 1;
+#btnFinalizar {
+  margin-top: 30px;
+  padding: 12px 35px;
+  font-size: 1.1em;
+  border-radius: 25px;
+  border: none;
+  background: #1e90ff;
+  color: white;
+  cursor: pointer;
 }
 
-/* FLORES */
-.garden {
-    margin-top: 30px;
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    align-items: flex-end;
+/* ================= FASE 3 ================= */
+#fase3 {
+  flex-direction: column;
+  background: black;
+  background-image:
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(#1e90ff 1px, transparent 1px);
+  background-size: 50px 50px;
 }
 
-.flower {
-    width: 18px;
-    height: 0;
-    background: #2e7d32;
-    position: relative;
-    animation: growStem 2s forwards;
-    animation-play-state: paused;
+#nombre {
+  color: white;
+  font-size: 3em;
+  margin-bottom: 30px;
 }
 
-@keyframes growStem {
-    to { height: 130px; }
+#nombre span {
+  opacity: 0;
+  animation: glow 0.8s forwards;
 }
 
-/* GERBERA */
+#flores {
+  display: flex;
+  gap: 30px;
+}
+
+/* ================= FLORES ================= */
+.flor {
+  position: relative;
+  width: 100px;
+  height: 260px;
+}
+
+.flor::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 6px;
+  height: 0;
+  background: green;
+  transform: translateX(-50%);
+  animation: tallo 2s forwards;
+}
+
+.flor::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  animation: petalos 2s forwards 2s;
+}
+
 .gerbera::after {
-    content: "";
-    position: absolute;
-    top: -38px;
-    left: -26px;
-    width: 70px;
-    height: 70px;
-    background: radial-gradient(circle, #ffeb3b 30%, #ff9800 31%);
-    border-radius: 50%;
-    opacity: 0;
-    animation: bloom 1s forwards;
-    animation-delay: 2s;
+  background: pink;
 }
 
-/* LIRIO */
-.lily::after {
-    content: "";
-    position: absolute;
-    top: -48px;
-    left: -20px;
-    width: 52px;
-    height: 78px;
-    background: #bbdefb;
-    border-radius: 50%;
-    opacity: 0;
-    animation: bloom 1s forwards;
-    animation-delay: 2s;
+.lirio::after {
+  background: white;
 }
 
-@keyframes bloom {
-    to { opacity: 1; }
+/* ================= FIRMA ================= */
+#firma {
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  font-size: 0.75em;
+  line-height: 1.4;
+  z-index: 10;
+  color: rgba(0, 0, 0, 0.5);
 }
 
-/* FONDO ESTRELLADO */
-body.stars {
-    background: #000;
-    overflow: hidden;
+/* En fase 3 (fondo oscuro) */
+#fase3 ~ #firma {
+  color: rgba(255, 255, 255, 0.6);
 }
 
-body.stars::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background:
-        radial-gradient(circle, rgba(0,140,255,0.9) 1px, transparent 1px),
-        radial-gradient(circle, rgba(0,0,0,1) 1px, transparent 1px);
-    background-size: 42px 42px, 26px 26px;
-    animation: starsMove 25s linear infinite;
-    z-index: -1;
+/* ================= ANIMACIONES ================= */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-@keyframes starsMove {
-    from { background-position: 0 0, 0 0; }
-    to { background-position: 600px 900px, -400px 700px; }
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 rgba(30,144,255,0.6); }
+  50% { box-shadow: 0 0 20px rgba(30,144,255,0.9); }
+  100% { box-shadow: 0 0 0 rgba(30,144,255,0.6); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow {
+  to {
+    opacity: 1;
+    text-shadow: 0 0 15px #1e90ff;
+  }
+}
+
+@keyframes tallo {
+  to { height: 180px; }
+}
+
+@keyframes petalos {
+  to { width: 80px; height: 80px; }
 }
