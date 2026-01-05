@@ -1,50 +1,63 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Madavi</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Para Madavi 💙</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- INTRO -->
-<div class="container" id="intro">
-    <img src="assets/snoopy.png" class="snoopy">
-    <button id="startBtn">Click Aquí</button>
-</div>
+  <!-- ================= FASE 1 ================= -->
+  <section id="fase1" class="fase activa">
+    <div class="intro">
+      <img src="assets/snoopy.png" alt="Snoopy" class="snoopy">
+      <h1 class="texto-intro">Antes de empezar… quiero que sepas algo 💙</h1>
+      <button id="btnIniciar">Click aquí</button>
+    </div>
+  </section>
 
-<!-- MENSAJE -->
-<div class="container hidden" id="message">
-    <h1>Hola, Madavii</h1>
-    <p>
-        Escribí este código para ti, para demostrar el cariño que te tengo y estoy muy feliz por tenerte en mi vida y haberte conocido,
-        te has convertido en una persona realmente especial para mí.. me encanta tu sonrisa, tus ojos, tus cachetes todoo
-        pero realmente me encantas Tú, te quierooo mucho :)
-        <br><br>
+  <!-- ================= FASE 2 ================= -->
+  <section id="fase2" class="fase">
+    <div class="mensaje">
+      <p>
+        Hola, Madavii<br><br>
+        Escribí este código para ti, para demostrar el cariño que te tengo y lo feliz que estoy
+        por tenerte en mi vida y haberte conocido.<br><br>
+        Me encanta tu sonrisa, tus ojos, tus cachetes… todo,
+        pero realmente me encantas <strong>TÚ</strong>.<br><br>
+        Te quierooo mucho 💙<br><br>
         — Ts
-    </p>
-    <button id="finalBtn">Finalizar</button>
-</div>
+      </p>
+      <button id="btnFinalizar">Finalizar</button>
+    </div>
+  </section>
 
-<!-- FINAL -->
-<div class="container hidden" id="final">
-    <h1 id="name">
-        <span>M</span><span>a</span><span>d</span><span>a</span><span>v</span><span>i</span>
+  <!-- ================= FASE 3 ================= -->
+  <section id="fase3" class="fase">
+    <h1 id="nombre">
+      <span>M</span><span>a</span><span>d</span><span>a</span><span>v</span><span>i</span>
     </h1>
 
-    <button id="bloomBtn">Finalizar</button>
-
-    <div class="garden">
-        <div class="flower gerbera"></div>
-        <div class="flower gerbera"></div>
-        <div class="flower gerbera"></div>
-        <div class="flower lily"></div>
-        <div class="flower lily"></div>
+    <div id="flores">
+      <div class="flor gerbera"></div>
+      <div class="flor gerbera"></div>
+      <div class="flor gerbera"></div>
+      <div class="flor lirio"></div>
+      <div class="flor lirio"></div>
     </div>
-</div>
+  </section>
 
-<audio id="bgMusic" src="assets/music.mp3"></audio>
+  <!-- ================= FIRMA ================= -->
+  <footer id="firma">
+    <p>Lucian Antonio RG</p>
+    <p>© 2026</p>
+    <p>Todos los derechos reservados</p>
+  </footer>
 
-<script src="script.js"></script>
+  <!-- ================= MÚSICA ================= -->
+  <audio id="musica" src="assets/music.mp3"></audio>
+
+  <!-- ================= SCRIPT ================= -->
+  <script src="script.js"></script>
 </body>
 </html>
