@@ -14,23 +14,26 @@ document.getElementById("btnFinal").onclick = () => {
   createFlowers();
 };
 
-// NOMBRE ANIMADO
 function animateName() {
   document.querySelectorAll("#nombre span").forEach((s, i) => {
-    s.style.setProperty("--i", i);
+    s.style.animationDelay = `${i * 0.4}s`;
   });
 }
 
-// FLORES
 function createFlowers() {
   document.querySelectorAll(".flower").forEach(flower => {
     const bloom = document.createElement("div");
     bloom.className = "bloom";
 
-    for (let i = 0; i < 5; i++) {
+    const core = document.createElement("div");
+    core.className = "core";
+    bloom.appendChild(core);
+
+    for (let i = 0; i < 8; i++) {
       const p = document.createElement("div");
       p.className = "petal";
-      p.style.transform = `rotate(${i * 72}deg) translateY(-20px)`;
+      p.style.transform =
+        `rotate(${i * 45}deg) translateY(-30px)`;
       bloom.appendChild(p);
     }
 
@@ -38,13 +41,14 @@ function createFlowers() {
   });
 }
 
-// ESTRELLAS
+/* ESTRELLAS */
 const stars = document.getElementById("stars");
-for (let i = 0; i < 120; i++) {
+
+for (let i = 0; i < 150; i++) {
   const s = document.createElement("div");
-  s.className = "star";
-  if (Math.random() > 0.6) s.classList.add("yellow");
+  s.classList.add("star");
+  s.classList.add(Math.random() > 0.5 ? "blue" : "yellow");
   s.style.left = Math.random() * 100 + "vw";
-  s.style.animationDuration = 10 + Math.random() * 20 + "s";
+  s.style.animationDuration = 12 + Math.random() * 20 + "s";
   stars.appendChild(s);
 }
