@@ -1,11 +1,11 @@
 /* =========================
-   RESET Y BASE
+   RESET GENERAL
 ========================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', system-ui, sans-serif;
 }
 
 body {
@@ -14,6 +14,9 @@ body {
   overflow: hidden;
 }
 
+/* =========================
+   ESCENAS / FASES
+========================= */
 .scene {
   width: 100vw;
   height: 100vh;
@@ -22,7 +25,8 @@ body {
   justify-content: center;
   flex-direction: column;
   position: relative;
-  padding: 20px;
+  padding: 25px;
+  text-align: center;
 }
 
 .scene.active {
@@ -30,16 +34,15 @@ body {
 }
 
 /* =========================
-   FASE 1 – INTRO BLANCO
+   FASE 1 – INTRO
 ========================= */
 .phase-1 {
-  background: radial-gradient(#ffffff, #eaeaea);
+  background: radial-gradient(circle, #ffffff, #e9e9e9);
 }
 
 .phase-1 h1 {
-  font-size: 1.6rem;
-  margin-bottom: 20px;
-  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 25px;
 }
 
 .phase-1 img {
@@ -47,47 +50,51 @@ body {
   margin-bottom: 30px;
 }
 
+/* =========================
+   BOTONES
+========================= */
 button {
-  padding: 12px 26px;
-  font-size: 1rem;
+  padding: 12px 28px;
+  border-radius: 30px;
   border: none;
-  border-radius: 25px;
-  cursor: pointer;
   background: #111;
   color: white;
-  transition: transform 0.2s, box-shadow 0.2s;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
 }
 
 button:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  box-shadow: 0 0 18px rgba(0,0,0,0.35);
 }
 
 /* =========================
-   FASE 2 – CARTA BLANCO
+   FASE 2 – CARTA
 ========================= */
 .phase-2 {
-  background: radial-gradient(#ffffff, #e6e6e6);
+  background: radial-gradient(circle, #ffffff, #e4e4e4);
 }
 
 .letter {
-  max-width: 85%;
-  text-align: center;
+  max-width: 800px;
   font-size: 1.15rem;
-  line-height: 1.7;
+  line-height: 1.8;
   opacity: 0;
-  animation: fadeIn 2.5s forwards;
+  animation: fadeInLetter 2.5s forwards;
 }
 
-@keyframes fadeIn {
-  to { opacity: 1; }
+@keyframes fadeInLetter {
+  to {
+    opacity: 1;
+  }
 }
 
 /* =========================
-   FASE 3 – OSCURA (CLÍMAX)
+   FASE 3 – OSCURA
 ========================= */
 .phase-3 {
-  background: radial-gradient(#050505, #000000);
+  background: radial-gradient(circle, #050505, #000000);
   color: white;
 }
 
@@ -109,15 +116,17 @@ button:hover {
    NOMBRE MADAVI
 ========================= */
 #madavi {
+  display: flex;
+  gap: 6px;
   margin-bottom: 40px;
   z-index: 3;
 }
 
 #madavi span {
+  font-size: 2.8rem;
   opacity: 0;
-  font-size: 2.7rem;
   color: #ffd84d;
-  text-shadow: 0 0 20px #ffd84d;
+  text-shadow: 0 0 18px #ffd84d;
   animation: glowIn 0.6s forwards;
 }
 
@@ -137,16 +146,16 @@ button:hover {
 ========================= */
 .flowers {
   display: flex;
-  gap: 25px;
+  gap: 28px;
   z-index: 3;
 }
 
+/* Base flor */
 .flower {
   width: 70px;
-  height: 200px;
+  height: 210px;
   position: relative;
   opacity: 0;
-  animation: flowerIn 1s forwards;
 }
 
 /* Tallo */
@@ -157,7 +166,7 @@ button:hover {
   left: 50%;
   width: 10px;
   height: 120px;
-  background: #3fe0c5;
+  background: linear-gradient(#4ee0c8, #1fa38b);
   border-radius: 10px;
   transform: translateX(-50%);
 }
@@ -166,7 +175,7 @@ button:hover {
 .flower::after {
   content: '';
   position: absolute;
-  top: 20px;
+  top: 28px;
   left: 50%;
   width: 22px;
   height: 22px;
@@ -179,54 +188,46 @@ button:hover {
 /* Pétalos */
 .flower .petals {
   position: absolute;
-  top: 5px;
+  top: 10px;
   left: 50%;
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   transform: translateX(-50%);
 }
 
 .flower .petals span {
   position: absolute;
   width: 18px;
-  height: 40px;
+  height: 42px;
   border-radius: 50%;
   transform-origin: bottom center;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.5s ease;
 }
 
-/* Gerberas (rojas) */
+/* Gerberas */
 .flower.red .petals span {
   background: #e63946;
 }
 
-/* Lirios (blancos) */
+/* Lirios */
 .flower.white .petals span {
-  background: #f5f5f5;
+  background: #f2f2f2;
 }
 
-/* Posición de pétalos */
-.flower .petals span:nth-child(1) { transform: rotate(0deg) translateY(-10px); }
-.flower .petals span:nth-child(2) { transform: rotate(45deg) translateY(-10px); }
-.flower .petals span:nth-child(3) { transform: rotate(90deg) translateY(-10px); }
-.flower .petals span:nth-child(4) { transform: rotate(135deg) translateY(-10px); }
-.flower .petals span:nth-child(5) { transform: rotate(180deg) translateY(-10px); }
-.flower .petals span:nth-child(6) { transform: rotate(225deg) translateY(-10px); }
-.flower .petals span:nth-child(7) { transform: rotate(270deg) translateY(-10px); }
-.flower .petals span:nth-child(8) { transform: rotate(315deg) translateY(-10px); }
-
-@keyframes flowerIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* Distribución pétalos */
+.flower .petals span:nth-child(1) { transform: rotate(0deg) scale(0); }
+.flower .petals span:nth-child(2) { transform: rotate(45deg) scale(0); }
+.flower .petals span:nth-child(3) { transform: rotate(90deg) scale(0); }
+.flower .petals span:nth-child(4) { transform: rotate(135deg) scale(0); }
+.flower .petals span:nth-child(5) { transform: rotate(180deg) scale(0); }
+.flower .petals span:nth-child(6) { transform: rotate(225deg) scale(0); }
+.flower .petals span:nth-child(7) { transform: rotate(270deg) scale(0); }
+.flower .petals span:nth-child(8) { transform: rotate(315deg) scale(0); }
 
 /* =========================
-   ESTRELLAS / PARTÍCULAS
+   ESTRELLAS
 ========================= */
 .star {
   position: absolute;
@@ -234,11 +235,16 @@ button:hover {
   border-radius: 50%;
   opacity: 0.8;
   animation: floatStar linear infinite;
+  z-index: 1;
 }
 
 @keyframes floatStar {
-  from { transform: translateY(0); }
-  to { transform: translateY(-120vh); }
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-120vh);
+  }
 }
 
 /* =========================
