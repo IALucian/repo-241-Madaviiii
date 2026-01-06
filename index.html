@@ -9,10 +9,12 @@
 
 <body>
 
-<!-- MÚSICA (inicia desde el principio) -->
+<!-- =========================
+     MÚSICA
+========================= -->
 <audio id="music" src="assets/music.mp3" autoplay loop></audio>
 
-<!-- OSCURECIMIENTO PROGRESIVO -->
+<!-- OSCURECIMIENTO -->
 <div class="overlay-dark" id="darkOverlay"></div>
 
 <!-- =========================
@@ -20,7 +22,9 @@
 ========================= -->
 <section class="scene phase-1 active" id="phase1">
   <h1>Antes de empezar quiero decirte algo especial… 💗</h1>
+
   <img src="assets/snoopy.png" alt="Snoopy">
+
   <button onclick="goToPhase(2)">Iniciar</button>
 </section>
 
@@ -28,6 +32,7 @@
      FASE 2 – CARTA
 ========================= -->
 <section class="scene phase-2" id="phase2">
+
   <div class="letter">
     Hola, Madavii 💛<br><br>
 
@@ -43,11 +48,12 @@
   </div>
 
   <br><br>
+
   <button onclick="goToPhase(3)">Continuar</button>
 </section>
 
 <!-- =========================
-     FASE 3 – FLORES + MADAVI
+     FASE 3 – FINAL
 ========================= -->
 <section class="scene phase-3" id="phase3">
 
@@ -56,6 +62,7 @@
 
   <!-- Flores -->
   <div class="flowers">
+
     <!-- 3 Gerberas -->
     <div class="flower red">
       <div class="petals">
@@ -92,8 +99,8 @@
         <span></span><span></span><span></span><span></span>
       </div>
     </div>
-  </div>
 
+  </div>
 </section>
 
 <!-- =========================
