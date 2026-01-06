@@ -2,13 +2,16 @@
    CONTROL DE FASES
 ========================= */
 function goToPhase(num) {
+  // Ocultar todas las escenas
   document.querySelectorAll('.scene').forEach(scene => {
     scene.classList.remove('active');
   });
 
+  // Mostrar la fase seleccionada
   const target = document.getElementById(`phase${num}`);
   if (target) target.classList.add('active');
 
+  // Iniciar fase final
   if (num === 3) {
     startPhase3();
   }
@@ -55,21 +58,15 @@ function showMadavi() {
 }
 
 /* =========================
-   FLORES – ANIMACIÓN SIMPLE
-   (SIN PÉTALOS INTERNOS)
+   FLORES – APARICIÓN ESCALONADA
 ========================= */
 function animateFlowers() {
   const flowers = document.querySelectorAll('.flower');
 
   flowers.forEach((flower, index) => {
-    flower.style.opacity = 0;
-    flower.style.transform = "scale(0.6) translateY(20px)";
-
     setTimeout(() => {
-      flower.style.opacity = 1;
-      flower.style.transform = "scale(1) translateY(0)";
       flower.classList.add("bloom");
-    }, index * 600);
+    }, index * 500);
   });
 }
 
@@ -90,22 +87,22 @@ function generateStars() {
     star.style.left = Math.random() * window.innerWidth + "px";
     star.style.top = Math.random() * window.innerHeight + "px";
 
-    star.style.animationDuration = `${Math.random() * 20 + 10}s`;
     star.style.opacity = Math.random() * 0.7 + 0.3;
+    star.style.animationDuration = `${Math.random() * 20 + 10}s`;
 
     document.body.appendChild(star);
   }
 }
 
 /* =========================
-   FIX AUTOPLAY MÓVIL
+   FIX AUTOPLAY EN MÓVIL
 ========================= */
 window.addEventListener(
   'click',
   () => {
     const music = document.getElementById("music");
     if (music && music.paused) {
-      music.play();
+      music.play().catch(() => {});
     }
   },
   { once: true }
