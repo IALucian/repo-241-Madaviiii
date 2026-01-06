@@ -1,120 +1,254 @@
+/* =========================
+   RESET Y BASE
+========================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 body {
-  background: radial-gradient(circle at center, #0b0b15, #000);
-  color: white;
+  background: #f5f5f5;
+  color: #111;
   overflow: hidden;
-  height: 100vh;
 }
 
-/* TEXTO INICIAL */
-.intro-text {
-  position: absolute;
-  top: 20px;
-  width: 100%;
-  text-align: center;
-  font-size: 1.1rem;
-  opacity: 0.9;
-  z-index: 10;
-}
-
-/* TITULO */
-.title {
-  text-align: center;
-  color: gold;
-  margin-bottom: 40px;
-  text-shadow: 0 0 15px gold;
-}
-
-/* ESCENA */
 .scene {
-  position: relative;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  display: none;
   align-items: center;
-  transition: filter 2s ease;
-}
-
-/* ETAPA OSCURA */
-.scene.stage-3 {
-  filter: brightness(0.45);
-}
-
-/* FLORES */
-.flowers {
-  display: flex;
-  gap: 40px;
-}
-
-/* TALLO */
-.flower {
+  justify-content: center;
+  flex-direction: column;
   position: relative;
-  width: 20px;
-  height: 160px;
-  background: #4ef0c4;
-  border-radius: 10px;
+  padding: 20px;
 }
 
-.flower::before {
-  content: "";
-  position: absolute;
-  top: -70px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background:
-    repeating-conic-gradient(
-      from 0deg,
-      var(--petal) 0deg 20deg,
-      transparent 20deg 40deg
-    );
-  filter: drop-shadow(0 0 12px var(--petal));
+.scene.active {
+  display: flex;
 }
 
-/* CENTRO */
-.flower::after {
-  content: "";
-  position: absolute;
-  top: -35px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 25px;
-  height: 25px;
-  background: gold;
-  border-radius: 50%;
-  box-shadow: 0 0 15px gold;
+/* =========================
+   FASE 1 – INTRO BLANCO
+========================= */
+.phase-1 {
+  background: radial-gradient(#ffffff, #eaeaea);
 }
 
-/* COLORES */
-.flower.red {
-  --petal: crimson;
+.phase-1 h1 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-.flower.white {
-  --petal: #f5f5f5;
+.phase-1 img {
+  width: 180px;
+  margin-bottom: 30px;
 }
 
-/* FOOTER */
-footer {
-  position: absolute;
-  bottom: 15px;
-  left: 15px;
-  font-size: 0.7rem;
-  opacity: 0.6;
+button {
+  padding: 12px 26px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  background: #111;
+  color: white;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* CANVAS */
-#stars {
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+/* =========================
+   FASE 2 – CARTA BLANCO
+========================= */
+.phase-2 {
+  background: radial-gradient(#ffffff, #e6e6e6);
+}
+
+.letter {
+  max-width: 85%;
+  text-align: center;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  opacity: 0;
+  animation: fadeIn 2.5s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* =========================
+   FASE 3 – OSCURA (CLÍMAX)
+========================= */
+.phase-3 {
+  background: radial-gradient(#050505, #000000);
+  color: white;
+}
+
+/* Oscurecimiento progresivo */
+.overlay-dark {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  background: rgba(0,0,0,0);
+  pointer-events: none;
+  transition: background 2s ease;
+  z-index: 2;
+}
+
+.overlay-dark.active {
+  background: rgba(0,0,0,0.75);
+}
+
+/* =========================
+   NOMBRE MADAVI
+========================= */
+#madavi {
+  margin-bottom: 40px;
+  z-index: 3;
+}
+
+#madavi span {
+  opacity: 0;
+  font-size: 2.7rem;
+  color: #ffd84d;
+  text-shadow: 0 0 20px #ffd84d;
+  animation: glowIn 0.6s forwards;
+}
+
+@keyframes glowIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   FLORES
+========================= */
+.flowers {
+  display: flex;
+  gap: 25px;
+  z-index: 3;
+}
+
+.flower {
+  width: 70px;
+  height: 200px;
+  position: relative;
+  opacity: 0;
+  animation: flowerIn 1s forwards;
+}
+
+/* Tallo */
+.flower::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 10px;
+  height: 120px;
+  background: #3fe0c5;
+  border-radius: 10px;
+  transform: translateX(-50%);
+}
+
+/* Centro */
+.flower::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  width: 22px;
+  height: 22px;
+  background: #ffd84d;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+/* Pétalos */
+.flower .petals {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  transform: translateX(-50%);
+}
+
+.flower .petals span {
+  position: absolute;
+  width: 18px;
+  height: 40px;
+  border-radius: 50%;
+  transform-origin: bottom center;
+}
+
+/* Gerberas (rojas) */
+.flower.red .petals span {
+  background: #e63946;
+}
+
+/* Lirios (blancos) */
+.flower.white .petals span {
+  background: #f5f5f5;
+}
+
+/* Posición de pétalos */
+.flower .petals span:nth-child(1) { transform: rotate(0deg) translateY(-10px); }
+.flower .petals span:nth-child(2) { transform: rotate(45deg) translateY(-10px); }
+.flower .petals span:nth-child(3) { transform: rotate(90deg) translateY(-10px); }
+.flower .petals span:nth-child(4) { transform: rotate(135deg) translateY(-10px); }
+.flower .petals span:nth-child(5) { transform: rotate(180deg) translateY(-10px); }
+.flower .petals span:nth-child(6) { transform: rotate(225deg) translateY(-10px); }
+.flower .petals span:nth-child(7) { transform: rotate(270deg) translateY(-10px); }
+.flower .petals span:nth-child(8) { transform: rotate(315deg) translateY(-10px); }
+
+@keyframes flowerIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   ESTRELLAS / PARTÍCULAS
+========================= */
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: floatStar linear infinite;
+}
+
+@keyframes floatStar {
+  from { transform: translateY(0); }
+  to { transform: translateY(-120vh); }
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  font-size: 0.65rem;
+  opacity: 0.6;
+  z-index: 10;
 }
