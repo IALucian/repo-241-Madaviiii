@@ -3,18 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <title>Para Madavi 💛</title>
+
+  <!-- RESPONSIVE -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ESTILOS -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
   <!-- =========================
-       MÚSICA
+       MÚSICA DE FONDO
+       (se activa con el primer click)
   ========================= -->
-  <audio id="music" src="assets/music.mp3" autoplay loop></audio>
+  <audio id="music" src="assets/music.mp3" loop></audio>
 
-  <!-- OSCURECIMIENTO -->
+  <!-- =========================
+       OVERLAY OSCURO FINAL
+  ========================= -->
   <div class="overlay-dark" id="darkOverlay"></div>
 
   <!-- =========================
@@ -22,7 +29,9 @@
   ========================= -->
   <section class="scene phase-1 active" id="phase1">
     <h1>Antes de empezar quiero decirte algo especial… 💗</h1>
+
     <img src="assets/snoopy.png" alt="Snoopy">
+
     <button onclick="goToPhase(2)">Iniciar</button>
   </section>
 
@@ -32,15 +41,19 @@
   <section class="scene phase-2" id="phase2">
     <div class="letter">
       Hola, Madavii 💛<br><br>
+
       Escribí este código para ti, para demostrar el cariño que te tengo y
       lo feliz que estoy por tenerte en mi vida y haberte conocido.<br><br>
+
       Te has convertido en una persona realmente especial para mí.
       Me encanta tu sonrisa, tus ojos, tus cachetes… todo,
       pero sobre todo me encantas tú.<br><br>
+
       Te quiero mucho. 💛<br><br>
+
       — Ts
     </div>
-    <br><br>
+
     <button onclick="goToPhase(3)">Continuar</button>
   </section>
 
@@ -49,23 +62,45 @@
   ========================= -->
   <section class="scene phase-3" id="phase3">
 
-    <!-- Nombre -->
+    <!-- NOMBRE -->
     <div id="madavi"></div>
 
-    <!-- Flores -->
+    <!-- FLORES COMPLETAS -->
     <div class="flowers">
 
-      <!-- 3 Gerberas -->
-      <div class="flower red"></div>
-      <div class="flower red"></div>
-      <div class="flower red"></div>
+      <!-- 3 GERBERAS ROJAS -->
+      <div class="flower red">
+        <div class="petals"></div>
+        <div class="center"></div>
+        <div class="stem"></div>
+      </div>
 
-      <!-- 2 Lirios -->
-      <div class="flower white"></div>
-      <div class="flower white"></div>
+      <div class="flower red">
+        <div class="petals"></div>
+        <div class="center"></div>
+        <div class="stem"></div>
+      </div>
+
+      <div class="flower red">
+        <div class="petals"></div>
+        <div class="center"></div>
+        <div class="stem"></div>
+      </div>
+
+      <!-- 2 LIRIOS BLANCOS -->
+      <div class="flower white">
+        <div class="petals"></div>
+        <div class="center"></div>
+        <div class="stem"></div>
+      </div>
+
+      <div class="flower white">
+        <div class="petals"></div>
+        <div class="center"></div>
+        <div class="stem"></div>
+      </div>
 
     </div>
-
   </section>
 
   <!-- =========================
@@ -77,6 +112,10 @@
     <p>© Copyright</p>
   </footer>
 
+  <!-- =========================
+       SCRIPT
+  ========================= -->
   <script src="script.js"></script>
+
 </body>
 </html>
