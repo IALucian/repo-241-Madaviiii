@@ -6,7 +6,8 @@ function goToPhase(num) {
     scene.classList.remove('active');
   });
 
-  document.getElementById(`phase${num}`).classList.add('active');
+  const target = document.getElementById(`phase${num}`);
+  if (target) target.classList.add('active');
 
   if (num === 3) {
     startPhase3();
@@ -28,6 +29,8 @@ function startPhase3() {
 ========================= */
 function darkenBackground() {
   const overlay = document.getElementById('darkOverlay');
+  if (!overlay) return;
+
   setTimeout(() => {
     overlay.classList.add('active');
   }, 600);
@@ -37,40 +40,36 @@ function darkenBackground() {
    NOMBRE MADAVI (LETRA X LETRA)
 ========================= */
 function showMadavi() {
-  const text = "Madavi";
+  const text = "Madavi 💛";
   const container = document.getElementById("madavi");
+  if (!container) return;
+
   container.innerHTML = "";
 
   [...text].forEach((char, index) => {
     const span = document.createElement("span");
     span.textContent = char;
-    span.style.animationDelay = `${index * 0.35}s`;
+    span.style.animationDelay = `${index * 0.25}s`;
     container.appendChild(span);
   });
 }
 
 /* =========================
-   FLORES – CONSTRUCCIÓN LIMPIA
+   FLORES – ANIMACIÓN SIMPLE
+   (SIN PÉTALOS INTERNOS)
 ========================= */
 function animateFlowers() {
   const flowers = document.querySelectorAll('.flower');
 
-  flowers.forEach((flower, flowerIndex) => {
+  flowers.forEach((flower, index) => {
     flower.style.opacity = 0;
+    flower.style.transform = "scale(0.6) translateY(20px)";
 
     setTimeout(() => {
       flower.style.opacity = 1;
-
-      const petals = flower.querySelectorAll('.petals span');
-
-      petals.forEach((petal, petalIndex) => {
-        setTimeout(() => {
-          petal.style.opacity = 1;
-          petal.style.transform = 'scale(1)';
-        }, petalIndex * 120);
-      });
-
-    }, flowerIndex * 800);
+      flower.style.transform = "scale(1) translateY(0)";
+      flower.classList.add("bloom");
+    }, index * 600);
   });
 }
 
@@ -78,23 +77,21 @@ function animateFlowers() {
    ESTRELLAS / PARTÍCULAS
 ========================= */
 function generateStars() {
-  const starCount = 90;
+  const starCount = 80;
 
   for (let i = 0; i < starCount; i++) {
     const star = document.createElement("div");
     star.classList.add("star");
 
-    const size = Math.random() * 4 + 3;
+    const size = Math.random() * 3 + 2;
     star.style.width = `${size}px`;
     star.style.height = `${size}px`;
 
     star.style.left = Math.random() * window.innerWidth + "px";
     star.style.top = Math.random() * window.innerHeight + "px";
 
-    const duration = Math.random() * 25 + 15;
-    star.style.animationDuration = `${duration}s`;
-
-    star.style.opacity = Math.random() * 0.8 + 0.2;
+    star.style.animationDuration = `${Math.random() * 20 + 10}s`;
+    star.style.opacity = Math.random() * 0.7 + 0.3;
 
     document.body.appendChild(star);
   }
