@@ -9,7 +9,7 @@
 }
 
 body {
-  background: radial-gradient(circle at top, #111428, #050509);
+  background: radial-gradient(circle at top, #12152b, #050509);
   color: #ffffff;
   text-align: center;
   overflow-x: hidden;
@@ -37,7 +37,7 @@ body {
 ========================= */
 button {
   margin-top: 30px;
-  padding: 14px 34px;
+  padding: 14px 36px;
   border-radius: 30px;
   border: none;
   background: #ffd966;
@@ -50,7 +50,7 @@ button {
 
 button:hover {
   transform: scale(1.05);
-  box-shadow: 0 12px 24px rgba(255, 217, 102, 0.45);
+  box-shadow: 0 12px 26px rgba(255, 217, 102, 0.45);
 }
 
 /* =========================
@@ -58,7 +58,7 @@ button:hover {
 ========================= */
 .phase-1 h1 {
   font-size: 1.6rem;
-  max-width: 600px;
+  max-width: 620px;
   margin-bottom: 20px;
 }
 
@@ -81,7 +81,7 @@ button:hover {
 }
 
 /* =========================
-   OVERLAY OSCURO FINAL
+   OVERLAY OSCURO
 ========================= */
 .overlay-dark {
   position: fixed;
@@ -119,7 +119,7 @@ button:hover {
   color: #ffd966;
   text-shadow:
     0 0 12px rgba(255, 217, 102, 0.6),
-    0 0 25px rgba(255, 217, 102, 0.3);
+    0 0 28px rgba(255, 217, 102, 0.35);
 }
 
 #madavi span {
@@ -141,10 +141,9 @@ button:hover {
 ========================= */
 .flowers {
   display: flex;
-  gap: 26px;
+  gap: 28px;
   justify-content: center;
   align-items: flex-end;
-  margin-top: 20px;
   flex-wrap: wrap;
 }
 
@@ -183,7 +182,7 @@ button:hover {
 /* CENTRO */
 .center {
   position: absolute;
-  top: 8px;
+  top: 10px;
   left: 50%;
   width: 22px;
   height: 22px;
@@ -198,16 +197,18 @@ button:hover {
   transform: translateX(-50%) scale(1);
 }
 
-/* PÉTALOS */
+/* PÉTALOS (REDONDOS) */
 .petals {
   position: absolute;
-  top: -14px;
+  top: -16px;
   left: 50%;
-  width: 72px;
-  height: 72px;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
   transform: translateX(-50%) scale(0);
   transition: transform 0.8s ease 1s;
   z-index: 2;
+  filter: drop-shadow(0 0 6px rgba(0,0,0,0.35));
 }
 
 .flower.bloom .petals {
@@ -217,25 +218,24 @@ button:hover {
 /* GERBERAS ROJAS */
 .flower.red .petals {
   background: repeating-conic-gradient(
-    #e63946 0deg 18deg,
-    transparent 18deg 36deg
+    #e63946 0deg 15deg,
+    transparent 15deg 30deg
   );
 }
 
 /* LIRIOS BLANCOS */
 .flower.white .petals {
   background: repeating-conic-gradient(
-    #ffffff 0deg 18deg,
-    transparent 18deg 36deg
+    #ffffff 0deg 15deg,
+    transparent 15deg 30deg
   );
 }
 
 /* =========================
-   ESTRELLAS
+   PARTÍCULAS / ESTRELLAS
 ========================= */
 .star {
   position: fixed;
-  background: white;
   border-radius: 50%;
   z-index: 0;
   animation: floatStar linear infinite;
