@@ -14,7 +14,7 @@ function goToPhase(num) {
 }
 
 /* =========================
-   FASE 3 – EFECTOS
+   INICIO FASE 3
 ========================= */
 function startPhase3() {
   darkenBackground();
@@ -30,49 +30,47 @@ function darkenBackground() {
   const overlay = document.getElementById('darkOverlay');
   setTimeout(() => {
     overlay.classList.add('active');
-  }, 500);
+  }, 600);
 }
 
 /* =========================
    NOMBRE MADAVI (LETRA X LETRA)
 ========================= */
 function showMadavi() {
-  const name = "Madavi";
+  const text = "Madavi";
   const container = document.getElementById("madavi");
   container.innerHTML = "";
 
-  [...name].forEach((letter, i) => {
+  [...text].forEach((char, index) => {
     const span = document.createElement("span");
-    span.textContent = letter;
-    span.style.animationDelay = `${i * 0.4}s`;
+    span.textContent = char;
+    span.style.animationDelay = `${index * 0.35}s`;
     container.appendChild(span);
   });
 }
 
 /* =========================
-   ANIMACIÓN FLORES PROGRESIVAS
+   FLORES – CONSTRUCCIÓN LIMPIA
 ========================= */
 function animateFlowers() {
   const flowers = document.querySelectorAll('.flower');
 
-  flowers.forEach((flower, index) => {
+  flowers.forEach((flower, flowerIndex) => {
     flower.style.opacity = 0;
 
     setTimeout(() => {
       flower.style.opacity = 1;
 
       const petals = flower.querySelectorAll('.petals span');
-      petals.forEach((petal, i) => {
-        petal.style.opacity = 0;
-        petal.style.transform += ' scale(0)';
+
+      petals.forEach((petal, petalIndex) => {
         setTimeout(() => {
-          petal.style.transition = 'all 0.5s ease';
           petal.style.opacity = 1;
-          petal.style.transform = petal.style.transform.replace('scale(0)', 'scale(1)');
-        }, i * 80);
+          petal.style.transform = 'scale(1)';
+        }, petalIndex * 120);
       });
 
-    }, index * 600);
+    }, flowerIndex * 800);
   });
 }
 
@@ -80,34 +78,38 @@ function animateFlowers() {
    ESTRELLAS / PARTÍCULAS
 ========================= */
 function generateStars() {
-  const starCount = 70;
+  const starCount = 90;
 
   for (let i = 0; i < starCount; i++) {
     const star = document.createElement("div");
     star.classList.add("star");
 
-    const size = Math.random() * 4 + 2;
+    const size = Math.random() * 4 + 3;
     star.style.width = `${size}px`;
     star.style.height = `${size}px`;
 
     star.style.left = Math.random() * window.innerWidth + "px";
     star.style.top = Math.random() * window.innerHeight + "px";
 
-    const duration = Math.random() * 20 + 15;
+    const duration = Math.random() * 25 + 15;
     star.style.animationDuration = `${duration}s`;
 
-    star.style.opacity = Math.random();
+    star.style.opacity = Math.random() * 0.8 + 0.2;
 
     document.body.appendChild(star);
   }
 }
 
 /* =========================
-   AUTO-PLAY MÚSICA (MÓVIL FIX)
+   FIX AUTOPLAY MÓVIL
 ========================= */
-window.addEventListener('click', () => {
-  const music = document.getElementById("music");
-  if (music.paused) {
-    music.play();
-  }
-}, { once: true });
+window.addEventListener(
+  'click',
+  () => {
+    const music = document.getElementById("music");
+    if (music && music.paused) {
+      music.play();
+    }
+  },
+  { once: true }
+);
