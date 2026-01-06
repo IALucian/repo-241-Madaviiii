@@ -2,41 +2,109 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Madavi</title>
+  <title>Para Madavi 💛</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <!-- TEXTO INICIAL -->
-  <div class="intro-text">
-    Antes de empezar quiero decirte algo especial… 💗
+<!-- MÚSICA (inicia desde el principio) -->
+<audio id="music" src="assets/music.mp3" autoplay loop></audio>
+
+<!-- OSCURECIMIENTO PROGRESIVO -->
+<div class="overlay-dark" id="darkOverlay"></div>
+
+<!-- =========================
+     FASE 1 – INICIO
+========================= -->
+<section class="scene phase-1 active" id="phase1">
+  <h1>Antes de empezar quiero decirte algo especial… 💗</h1>
+  <img src="assets/snoopy.png" alt="Snoopy">
+  <button onclick="goToPhase(2)">Iniciar</button>
+</section>
+
+<!-- =========================
+     FASE 2 – CARTA
+========================= -->
+<section class="scene phase-2" id="phase2">
+  <div class="letter">
+    Hola, Madavii 💛<br><br>
+
+    Escribí este código para ti, para demostrar el cariño que te tengo y
+    lo feliz que estoy por tenerte en mi vida y haberte conocido.<br><br>
+
+    Te has convertido en una persona realmente especial para mí.
+    Me encanta tu sonrisa, tus ojos, tus cachetes… todo,
+    pero sobre todo me encantas tú.<br><br>
+
+    Te quiero mucho. 💛<br><br>
+    — Ts
   </div>
 
-  <!-- FONDO ESTRELLAS -->
-  <canvas id="stars"></canvas>
+  <br><br>
+  <button onclick="goToPhase(3)">Continuar</button>
+</section>
 
-  <!-- CONTENIDO -->
-  <div class="scene stage-1" id="scene">
+<!-- =========================
+     FASE 3 – FLORES + MADAVI
+========================= -->
+<section class="scene phase-3" id="phase3">
 
-    <h1 class="title">Madavi</h1>
+  <!-- Nombre -->
+  <div id="madavi"></div>
 
-    <div class="flowers">
-      <div class="flower red"></div>
-      <div class="flower red"></div>
-      <div class="flower red"></div>
-      <div class="flower white"></div>
-      <div class="flower white"></div>
+  <!-- Flores -->
+  <div class="flowers">
+    <!-- 3 Gerberas -->
+    <div class="flower red">
+      <div class="petals">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+      </div>
     </div>
 
+    <div class="flower red">
+      <div class="petals">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div class="flower red">
+      <div class="petals">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <!-- 2 Lirios -->
+    <div class="flower white">
+      <div class="petals">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div class="flower white">
+      <div class="petals">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </div>
   </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>Lucian Antonio RG</p>
-    <p>Todos los derechos reservados</p>
-    <p>© Copyright</p>
-  </footer>
+</section>
 
-  <script src="script.js"></script>
+<!-- =========================
+     FOOTER
+========================= -->
+<footer>
+  <p>Lucian Antonio RG</p>
+  <p>Todos los derechos reservados</p>
+  <p>© Copyright</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
