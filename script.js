@@ -2,16 +2,16 @@
    CONTROL DE FASES
 ========================= */
 function goToPhase(num) {
-  // Ocultar todas las escenas
+  // Oculta todas las escenas
   document.querySelectorAll('.scene').forEach(scene => {
     scene.classList.remove('active');
   });
 
-  // Mostrar la fase seleccionada
+  // Muestra la fase actual
   const target = document.getElementById(`phase${num}`);
   if (target) target.classList.add('active');
 
-  // Iniciar fase final
+  // Si es la fase final, iniciar animaciones
   if (num === 3) {
     startPhase3();
   }
@@ -71,10 +71,17 @@ function animateFlowers() {
 }
 
 /* =========================
-   ESTRELLAS / PARTÍCULAS
+   PARTÍCULAS / ESTRELLAS
+   (BLANCAS + AZUL PASTEL)
 ========================= */
 function generateStars() {
-  const starCount = 80;
+  const starCount = 90;
+  const colors = [
+    "#ffffff",   // blanco
+    "#b9f3ff",   // celeste claro
+    "#9ee7ff",   // azul pastel
+    "#c7f0ff"    // celeste suave
+  ];
 
   for (let i = 0; i < starCount; i++) {
     const star = document.createElement("div");
@@ -87,15 +94,16 @@ function generateStars() {
     star.style.left = Math.random() * window.innerWidth + "px";
     star.style.top = Math.random() * window.innerHeight + "px";
 
+    star.style.background = colors[Math.floor(Math.random() * colors.length)];
     star.style.opacity = Math.random() * 0.7 + 0.3;
-    star.style.animationDuration = `${Math.random() * 20 + 10}s`;
+    star.style.animationDuration = `${Math.random() * 25 + 15}s`;
 
     document.body.appendChild(star);
   }
 }
 
 /* =========================
-   FIX AUTOPLAY EN MÓVIL
+   FIX AUTOPLAY (MÓVIL)
 ========================= */
 window.addEventListener(
   'click',
