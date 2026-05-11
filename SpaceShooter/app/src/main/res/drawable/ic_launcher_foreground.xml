@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Ship body -->
+    <path
+        android:fillColor="#00C8FF"
+        android:pathData="M54,20 L38,70 L54,60 L70,70 Z" />
+    <!-- Left wing -->
+    <path
+        android:fillColor="#0096CC"
+        android:pathData="M38,55 L24,75 L38,70 Z" />
+    <!-- Right wing -->
+    <path
+        android:fillColor="#0096CC"
+        android:pathData="M70,55 L84,75 L70,70 Z" />
+    <!-- Cockpit -->
+    <path
+        android:fillColor="#E0F0FF"
+        android:pathData="M54,38 m-5,0 a5,5 0,1 1,10 0 a5,5 0,1 1,-10 0" />
+    <!-- Engine flame -->
+    <path
+        android:fillColor="#FF9600"
+        android:pathData="M50,65 L54,85 L58,65 Z" />
+</vector>

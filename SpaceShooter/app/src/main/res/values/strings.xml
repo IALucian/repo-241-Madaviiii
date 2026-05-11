@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Space Shooter</string>
+    <string name="subtitle">Defiende la galaxia</string>
+    <string name="play">JUGAR</string>
+    <string name="instructions">Toca y arrastra para mover la nave\nDispara automáticamente</string>
+    <string name="game_over">GAME OVER</string>
+    <string name="final_score">Puntuación: %d</string>
+    <string name="play_again">JUGAR DE NUEVO</string>
+    <string name="main_menu">MENÚ PRINCIPAL</string>
+</resources>

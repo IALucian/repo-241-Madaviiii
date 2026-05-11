@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.SpaceShooter" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#00C8FF</item>
+        <item name="colorPrimaryVariant">#0096CC</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#00FFC8</item>
+        <item name="colorSecondaryVariant">#00CC9E</item>
+        <item name="colorOnSecondary">#000000</item>
+        <item name="android:statusBarColor">#050514</item>
+        <item name="android:navigationBarColor">#050514</item>
+        <item name="android:windowBackground">@color/space_dark</item>
+    </style>
+</resources>
